@@ -22,20 +22,40 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const handleReClick = (index) =>{
-    
+    setCurrentSlide(0)
   }
   const handlePrevClick = () =>{
-   
+    if(currentSlide >= 1){
+    setCurrentSlide(currentSlide - 1)
+    }
+  }
 
-  }
   const handleNextClick = () =>{
- console.log("nil");
+    if(currentSlide < slides.length - 1){
+      setCurrentSlide(currentSlide + 1)
+    }
   }
+
+  const updateCurrentSlide = (index) => {
+    if (currentSlide !== index) {
+        this.setState({
+            currentSlide: index,
+        });
+    }
+};
+
+  
   return (
     <>
-    <Carousel showArrows={true} className={classes.carouselRoot} showThumbs={true} onClickPrev={handlePrevClick} 
-    onClickNext={handleNextClick}>
+    <Carousel showArrows={true} className={classes.carouselRoot} 
+    showThumbs={true} 
+    selectedItem={currentSlide}
+    onClickPrev={handlePrevClick} 
+    onClickNext={handleNextClick}
+    onChange={updateCurrentSlide}
+    >
       {slides.map((item,index) =>{
         return(
           <Paper className={classes.carouselPaper}>
