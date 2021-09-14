@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react";
 import slides from "../data";
 import '../styles/App.css';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,18 +21,21 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
+  const [index, setIndex] = useState(0);
   const handleReClick = (index) =>{
     
   }
-  const handlePrevClick = (index) =>{
+  const handlePrevClick = () =>{
+   
 
   }
-  const handleNextClick = (index) =>{
-
+  const handleNextClick = () =>{
+ console.log("nil");
   }
   return (
     <>
-    <Carousel showArrows={true} className={classes.carouselRoot}>
+    <Carousel showArrows={true} className={classes.carouselRoot} showThumbs={true} onClickPrev={handlePrevClick} 
+    onClickNext={handleNextClick}>
       {slides.map((item,index) =>{
         return(
           <Paper className={classes.carouselPaper}>
